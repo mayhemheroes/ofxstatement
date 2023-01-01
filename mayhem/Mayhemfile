@@ -1,0 +1,9 @@
+project: ofxstatement
+target: fuzz-parsers
+testsuite:
+    - file://mayhem/testsuite
+
+cmds:
+  - cmd: /src/mayhem/fuzz_parsers.py
+    libfuzzer: true
+    timeout: 12
