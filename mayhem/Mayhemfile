@@ -1,0 +1,14 @@
+# Mayhem target: ofxstatement bank-statement parser / OFX writer (Atheris/libFuzzer harness).
+# The cmd binary is the compiled ELF launcher that drives mayhem/fuzz_parsers.py; Atheris
+# instruments the ofxstatement library so the run records coverage (edges).
+project: ofxstatement
+target: fuzz-parsers
+
+# Server-accumulated corpus + local starter seeds (docs/seed-corpus.md sanctioned form).
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz-parsers/testsuite
+
+cmds:
+  - cmd: /mayhem/ofxstatement_fuzzer
+    libfuzzer: true
